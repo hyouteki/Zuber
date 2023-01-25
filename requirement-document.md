@@ -35,7 +35,8 @@
 - Change password.
 - Change phone-number.
 - Check history(past bookings/transactions).
--  Cancel booking.
+- Cancel booking.
+- Make booking.
 
 ### Driver actions
 - Change password.
@@ -44,6 +45,7 @@
 - Change currently working status.
 - Check history(past transactions).
 - Cancel booking.
+- Accept booking.
 
 ### Administrative actions
 - Change driver current-location.
