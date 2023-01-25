@@ -24,10 +24,10 @@
 - Booking & Car also have a one to one relationship.
 
 ### Schema
-- Customer (id, name, password, history, current-booking, phone-number)
-- Driver (id, name, password, history, car, phone-number, current-location, working)
-- Booking (id, pick-up-location, destination, pick-up-time, car, number-of-people, sharing, status)
-- Car (id, brand, model, capacity, price, plate-number)
+- Customer (*id*, name, password, history, current-booking, *phone-number*)
+- Driver (*id*, name, password, history, car, *phone-number*, current-location, working)
+- Booking (*id*, pick-up-location, destination, pick-up-time, car, number-of-people, sharing, status)
+- Car (*id*, brand, model, capacity, price, *registration-number*)
 
 ## Functional requirements
 
