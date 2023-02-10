@@ -15,19 +15,21 @@
 - Customer
 - Driver
 - Booking
+- Transaction
 - Car
 
 ### Relations
 - Customer & Booking have a one to many relationship.
 - Driver & Car have a one to one relationship.
 - Driver & Booking also have a one to many relationship.
-- Booking & Car also have a one to one relationship.
+- Booking & Car also have a one to many relationship.
+- Booking and Transaction have a one to one relationship.
 
 ### Schema
-- Customer (*id*, name, password, history, current-booking, *phone-number*)
-- Driver (*id*, name, password, history, car, *phone-number*, current-location, working)
-- Booking (*id*, pick-up-location, destination, pick-up-time, car, number-of-people, sharing, status)
-- Car (*id*, brand, model, capacity, price, *registration-number*)
+- Customer (*customer_id*, name, password, history, *current_booking*, *phone_number*)
+- Driver (*driver_id*, name, password, history, *car_id*, *phone_number*, *current_location*, working)
+- Booking (*booking_id*, pickup_location, destination, pickup_time, *car_id*, number_of_people, sharing, status, *customer_id*, *driver_id*, *transaction_id*)
+- Car (*car_id*, brand, model, capacity, price_per_km, *registration_number*)
 
 ## Functional requirements
 
@@ -50,12 +52,13 @@
 ### Administrative actions
 - Change driver current-location.
 - Change booking status.
+- Handle transaction.
 
 ### Booking system
 Customer will book the journey. The booking will be push to the database and nearest driver will be informed about the journey. A tentative fair will be provided to the Costumer for reference.
 
 ### Dummy payment system
-Customer can either pay with UPI or cash. 
+Customer can pay with UPI, Cash, Net banking, Credit card & Debit card. 
 
 ### User interaction
 Customer can select pick-up location and destination using maps. Customer can see the Driver’s current-location in the map. Driver can also navigate to pick-up-location through maps.
