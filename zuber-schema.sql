@@ -33,6 +33,7 @@ CREATE TABLE car (
     PRIMARY KEY (car_id),
     UNIQUE KEY (registration_number)
 );
+
 -- Table structure for table `driver`
 
 CREATE TABLE driver (
@@ -49,7 +50,6 @@ CREATE TABLE driver (
     FOREIGN KEY (car_id) REFERENCES car (car_id),
     FOREIGN KEY (current_booking) REFERENCES booking (booking_id)
 );
-
 
 -- Table structure for table `transaction`
 
