@@ -6,3 +6,4 @@
 - [Database Schema](https://github.com/Hyouteki/Zuber/blob/main/zuber-schema.sql)
 - [Database Population/ Sample data](https://github.com/Hyouteki/Zuber/blob/main/zuber-data.sql)
 - [Relational algebra](https://github.com/Hyouteki/Zuber/blob/main/relational-algebra.md)
+- [Sample queries](https://github.com/Hyouteki/Zuber/blob/main/zuber-queries.sql)
