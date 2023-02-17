@@ -1,4 +1,4 @@
--- zuber Database View
+-- zuber Database Sample queries
 -- version 1.0
 
 USE zuber;
