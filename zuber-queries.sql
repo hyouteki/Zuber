@@ -1,4 +1,4 @@
--- zuber Database Sample queries
+-- zuber Database View
 -- version 1.0
 
 USE zuber;
@@ -48,10 +48,13 @@ SELECT * FROM driver WHERE working=TRUE;
 INSERT INTO driver VALUES(101, 'Martin Luther', 'lmao1234', NULL, '820-403-0187x9440');
 
 -- update driver phone_number
-UPDATE driver SET phone_number = '820-403-0187' WHERE customer_id = 2;
+UPDATE driver SET phone_number = '820-403-0187' WHERE driver_id = 2;
 
 -- update driver password
 UPDATE driver SET password = 'BEUe96Bz' WHERE driver_id = 2;
+
+-- clear driver current_booking
+UPDATE driver SET current_booking = NULL WHERE driver_id = 2;
 
 -- update driver current_location
 UPDATE driver SET current_location = '40611 Henderson Key Brownton, IA 42973' WHERE driver_id = 2;
@@ -92,6 +95,12 @@ CREATE VIEW get_booking_where_sharing_is_true AS
 SELECT booking_id, pickup_location, destination, number_of_people, pickup_time, 
 booking_status, transaction_id, sharing, customer.customer_id, driver_id, car_id
 FROM customer, booking WHERE sharing = TRUE AND customer.customer_id = booking.customer_id 
+AND customer.customer_id = 1;
+
+CREATE VIEW get_booking_where_sharing_is_false AS
+SELECT booking_id, pickup_location, destination, number_of_people, pickup_time, 
+booking_status, transaction_id, sharing, customer.customer_id, driver_id, car_id
+FROM customer, booking WHERE sharing = FALSE AND customer.customer_id = booking.customer_id 
 AND customer.customer_id = 1;
 
 CREATE VIEW get_booking_with_destination_for_customer AS
@@ -222,6 +231,32 @@ CREATE VIEW get_count_group_by_destination_for_customer AS
 SELECT COUNT(booking_id), destination FROM customer, booking 
 WHERE customer.customer_id = booking.customer_id AND customer.customer_id = 1 GROUP BY destination;
 
+CREATE VIEW get_count_group_by_pickup_location_for_customer AS
+SELECT COUNT(booking_id), destination FROM customer, booking 
+WHERE customer.customer_id = booking.customer_id AND customer.customer_id = 1 GROUP BY pickup_location;
+
 CREATE VIEW get_count_group_by_destination_for_driver AS
 SELECT COUNT(booking_id), destination FROM driver, booking 
 WHERE driver.driver_id = booking.driver_id AND driver.driver_id = 1 GROUP BY destination;
+
+CREATE VIEW get_count_group_by_pickup_location_for_driver AS
+SELECT COUNT(booking_id), destination FROM driver, booking 
+WHERE driver.driver_id = booking.driver_id AND driver.driver_id = 1 GROUP BY pickup_location;
+
+CREATE VIEW get_count_of_common_destination AS
+SELECT COUNT(booking_id), destination FROM booking GROUP BY destination;
+
+CREATE VIEW get_count_of_common_pickup_location AS
+SELECT COUNT(booking_id), pickup_location FROM booking GROUP BY pickup_location;
+
+CREATE VIEW get_count_of_pair_of_pickup_location_destination AS
+SELECT COUNT(booking_id), pickup_location, destination FROM booking GROUP BY destination, pickup_location;
+
+CREATE VIEW get_customer_having_same_destination_as_customer AS
+SELECT customer_id FROM booking WHERE destination IN
+(SELECT destination FROM booking WHERE customer_id = 1);
+
+CREATE VIEW get_customer_having_same_pickup_location_as_customer AS
+SELECT customer_id FROM booking WHERE destination IN
+(SELECT destination FROM booking WHERE customer_id = 1);
+
