@@ -343,3 +343,36 @@ CREATE VIEW get_count_group_by_pickup_location_for_driver AS
 SELECT COUNT(booking_id), destination FROM driver, booking 
 WHERE driver.driver_id = booking.driver_id AND driver.driver_id = 1 GROUP BY pickup_location;
 ```
+
+- getting count of bookings having same destination
+```
+CREATE VIEW get_count_of_common_destination AS
+SELECT COUNT(booking_id), destination FROM booking GROUP BY destination;
+```
+
+- getting count of bookings having same pickup_location
+```
+CREATE VIEW get_count_of_common_pickup_location AS
+SELECT COUNT(booking_id), pickup_location FROM booking GROUP BY pickup_location;
+```
+
+- getting count of bookings having same pickup_location & destination
+```
+CREATE VIEW get_count_of_pair_of_pickup_location_destination AS
+SELECT COUNT(booking_id), pickup_location, destination FROM booking GROUP BY destination, pickup_location;
+```
+
+- getting customer_id of customers having bookings of same destination as customer with customer_id 1
+```
+CREATE VIEW get_customer_having_same_destination_as_customer AS
+SELECT customer_id FROM booking WHERE destination IN
+(SELECT destination FROM booking WHERE customer_id = 1);
+```
+
+- getting customer_id of customers having bookings of same pickup_location as customer with customer_id 1
+```
+CREATE VIEW get_customer_having_same_pickup_location_as_customer AS
+SELECT customer_id FROM booking WHERE destination IN
+(SELECT destination FROM booking WHERE customer_id = 1);
+```
+
