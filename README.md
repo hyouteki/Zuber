@@ -13,3 +13,4 @@
 - OLAP queries and triggers
   - [OLAP queries](https://github.com/Hyouteki/Zuber/blob/main/zuber-olap.sql)  
   - [Triggers](https://github.com/Hyouteki/Zuber/blob/main/zuber-triggers.sql)
+- [Zuber CLI](https://github.com/Hyouteki/Zuber/tree/main/CLI)
