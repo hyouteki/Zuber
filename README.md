@@ -10,3 +10,6 @@
   - [Relational algebra](https://github.com/Hyouteki/Zuber/blob/main/relational-algebra.md)
   - [Sample queries](https://github.com/Hyouteki/Zuber/blob/main/zuber-queries.sql)
   - [Query explanation](https://github.com/Hyouteki/Zuber/blob/main/query-explaination.md)
+- OLAP queries and triggers
+  - [OLAP queries](https://github.com/Hyouteki/Zuber/blob/main/zuber-olap.sql)  
+  - [Triggers](https://github.com/Hyouteki/Zuber/blob/main/zuber-triggers.sql)
