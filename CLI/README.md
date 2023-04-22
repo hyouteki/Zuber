@@ -4,11 +4,14 @@
   - [x] customer
   - [x] driver
 - [ ] sign in
-    - [ ] customer
+    - [x] customer
         - [x] check details
         - [x] change password
-        - [ ] book a trip
-        - [ ] check history
+        - [x] book a trip
+        - [x] cancel trip
+        - [x] check booking history
+        - [x] check transaction history
+        - [x] make transaction 
         - [x] sign out
     - [ ] driver
 ## Zuber admin
