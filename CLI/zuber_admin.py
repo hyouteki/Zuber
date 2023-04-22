@@ -4,7 +4,7 @@ import zuber_queries as query
 
 def options():
     info("Admin options")
-    say("1. Select options")
+    say("1. Select/print statements")
     say("2. Exit")
     choice = int(ask("Enter your choice: "))
     if (choice == 1):
@@ -17,7 +17,7 @@ def options():
 
 
 def selectOptions():
-    info("Select ~ options")
+    info("Select/print ~ statements")
     say("1. Select customers")
     say("2. Select drivers")
     say("3. Select cars")

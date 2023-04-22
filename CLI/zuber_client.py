@@ -80,20 +80,26 @@ def customerOptions():
         say("2. Change password")
         say("3. Book a trip")
         say("4. Cancel trip")
-        say("5. History")
-        say("6. Sign out")
+        say("5. Booking history")
+        say("6. Transaction history")
+        say("7. Make transaction")
+        say("8. Sign out")
         choice = int(ask("Enter your choice: "))
         if choice == 1:
             printCustomerDetails()
         elif choice == 2:
             updateCustomerPassword()
         elif choice == 3:
-            pass
+            bookATrip()
         elif choice == 4:
-            pass
+            cancelCustomerBooking()
         elif choice == 5:
-            pass
+            query.getCustomerBookingHistory(currentCustomer.id)
         elif choice == 6:
+            query.getCustomerTransactionHistory(currentCustomer.id)
+        elif choice == 7:
+            makeCustomerTransaction()
+        elif choice == 8:
             currentCustomer.clear()
             signUpLoginPage()
         else:
@@ -122,6 +128,73 @@ def updateCustomerPassword():
     query.updateCustomerPassword(currentCustomer.id, currentCustomer.password)
     currentCustomer.password = newPassword
     cookie("Password updated")
+
+
+def bookATrip():
+    if query.customerHasCurrentBooking(currentCustomer.id):
+        error("Cannot book a booking before completion/cancellation of existing booking")
+        return None
+    if (ask("Give GPS permission [Y/N]: ") == "Y"):
+        pickupLocation = ask("Give pickup location: ")
+        destination = ask("Give destination: ")
+        numberOfPeople = int(ask("Give number of passengers: "))
+        pickupTime = ask("Give pickup time: ")
+        bookingStatus = "Ongoing"
+        sharing = bool(ask("Give sharing status: "))
+        driverId = query.getNearestDriver(
+            pickupLocation, numberOfPeople, sharing)
+        if driverId is None:
+            error("Cannot find a driver because of traffic")
+        else:
+            if (ask("Confirm booking [Y/N]: ") == "Y"):
+                query.makeBooking(pickupLocation, destination, numberOfPeople, pickupTime,
+                                  bookingStatus, sharing, currentCustomer.id, driverId)
+                cookie("Booking confirmed")
+            else:
+                cookie("Booking repealed")
+    else:
+        error("Cannot proceed without GPS permission")
+
+
+def cancelCustomerBooking():
+    if query.customerHasCurrentBooking(currentCustomer.id):
+        query.cancelCustomerBooking(currentCustomer.id)
+        cookie("booking canceled")
+    else:
+        error("No booking in progress")
+
+
+def makeCustomerTransaction():
+    currentBooking, car = query.getCurrentBooking(currentCustomer.id)
+    say(
+        f"Making transaction for bookingID :: {currentBooking[0]} and carID :: {car[0]}")
+    say(f"from '{currentBooking[1]}' to '{currentBooking[2]}'")
+    distance = query.distance(query.getLocationCoordinates(currentBooking[1]),
+                              query.getLocationCoordinates(currentBooking[2]))
+    say(f"Total distance of {distance}km with {currentBooking[3]} passengers")
+    amount = distance*currentBooking[3]*car[5]
+    say(f"Total amount of {amount}")
+    info("Select payment option")
+    say("1. UPI")
+    say("2. Cash")
+    say("3. Net banking")
+    say("4. Credit card")
+    say("5. Debit card")
+    choice = int(ask("Enter your choice: "))
+    paymentType = ""
+    if choice == 1:
+        paymentType = "UPI"
+    elif choice == 2:
+        paymentType = "Cash"
+    elif choice == 3:
+        paymentType = "Net banking"
+    elif choice == 4:
+        paymentType = "Credit card"
+    else:
+        paymentType = "Debit card"
+    if (ask("Confirm payment [Y/N]: ") == "Y"):
+        query.makeTransaction(currentBooking[0], paymentType, amount)
+        cookie("Payment confirmed")
 
 
 def signInDriverPage():
