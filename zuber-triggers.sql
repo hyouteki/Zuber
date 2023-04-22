@@ -10,8 +10,8 @@ CREATE TRIGGER update_booking_status
 BEFORE UPDATE ON booking
 FOR EACH ROW
 BEGIN
-    IF OLD.booking_status = "Ongoing" AND
-    NEW.booking_status = "Completed" THEN
+    IF OLD.booking_status <> NEW.booking_status OR 
+    OLD.transaction_id <> NEW.transaction_id THEN
         UPDATE customer SET current_booking = NULL
         WHERE customer_id = OLD.customer_id;
         UPDATE driver SET current_booking = NULL
