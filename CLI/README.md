@@ -27,6 +27,7 @@
   - zuber-queries.sql
   - zuber-triggers.sql
   - zuber-olap.sql
+- Update your mysql password in `database.py` file at line number `12`.
 - Then do `make install` in your terminal.
 - Then run either `zuber_client.py` or `zuber_admin.py` files.
   > Remember to use all the sql files in your local mysql server before launching CLI.
