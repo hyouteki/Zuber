@@ -1,6 +1,6 @@
 -   Download the repository (source code).
--   Use all the sql files in your local mysql server in the mentioned sequence.
-	`SOURCE <address-of-zuber-repository>/zuber-schema.sql`
+-   Use all the sql files in your local mysql server in the mentioned sequence.<br>
+    Example: `SOURCE <address-of-zuber-repository>/zuber-schema.sql`
     -   zuber-schema.sql
     -   zuber-data.sql
     -   zuber-queries.sql
