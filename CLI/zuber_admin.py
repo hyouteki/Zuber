@@ -18,10 +18,12 @@ def options():
 
 def selectOptions():
     info("Select/print ~ statements")
-    say("1. Select customers")
-    say("2. Select drivers")
-    say("3. Select cars")
-    say("4. Back")
+    say("1. Select all customers")
+    say("2. Select all drivers")
+    say("3. Select all cars")
+    say("4. Select all bookings")
+    say("5. Select all transactions")
+    say("6. Back")
     choice = int(ask("Enter your choice: "))
     if (choice == 1):
         query.selectCustomers()
@@ -30,6 +32,10 @@ def selectOptions():
     elif (choice == 3):
         query.selectCars()
     elif (choice == 4):
+        query.selectBookings()
+    elif (choice == 5):
+        query.selectTransactions()
+    elif (choice == 6):
         options()
     else:
         error("Invalid choice")

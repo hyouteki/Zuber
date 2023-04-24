@@ -38,6 +38,23 @@ def selectCars():
           "ID", "Brand", "Model", "Registration number", "Capacity", "Price per km"], tablefmt="fancy_grid"))
 
 
+def selectBookings():
+    database.nonCommitQuery(
+        f"SELECT * FROM booking;")
+    data = [record for record in database.getCursor().fetchall()]
+    print(tabulate(data, headers=["ID", "Pickup location", "Destination", "# People",
+                                  "Pickup time", "Booking status", "Transaction ID",
+                                  "Sharing", "Customer ID", "Driver ID", "Car ID"], tablefmt="fancy_grid"))
+
+
+def selectTransactions():
+    database.nonCommitQuery(
+        f"SELECT * FROM transaction;")
+    data = [record for record in database.getCursor().fetchall()]
+    print(tabulate(data, headers=[
+          "ID", "Payment type", "Amount"], tablefmt="fancy_grid"))
+
+
 def insertCustomer(name: str, password: str,
                    currentBooking, phoneNumber: str):
     if currentBooking == None:
@@ -223,6 +240,13 @@ def makeTransaction(bookingId, paymentType, amount):
     transactionId = lastInsertIds()
     database.executeQuery(
         f"UPDATE booking SET transaction_id = {transactionId}, booking_status = 'Completed' WHERE booking_id = {bookingId};")
+    database.nonCommitQuery(
+        f"SELECT * FROM booking WHERE booking_id = {bookingId};")
+    booking = [record for record in database.getCursor().fetchall()][0]
+    destination = booking[2]
+    driverId = booking[9]
+    database.executeQuery(
+        f"UPDATE driver SET current_location = '{destination}' WHERE driver_id = {driverId};")
 
 
 if __name__ == "__main__":
@@ -230,5 +254,5 @@ if __name__ == "__main__":
     # print(getNearestDriver("hello 27r8ygbvwnwnvlkm;v, .  ,nmoto", 9, False))
     # getCustomerTransactionHistory(99)
     # print(getCurrentBooking(100))
-    makeTransaction(100, "UPI", 69)
+    makeTransaction(81, "UPI", 69)
     pass
