@@ -3,6 +3,7 @@
 
 USE zuber;
 DROP TRIGGER IF EXISTS update_booking_status;
+DROP TRIGGER IF EXISTS insert_booking;
 DROP TRIGGER IF EXISTS update_driver_car;
 
 DELIMITER |
@@ -17,6 +18,18 @@ BEGIN
         UPDATE driver SET current_booking = NULL
         WHERE driver_id = OLD.driver_id;
     END IF;
+END |
+DELIMITER ;
+
+DELIMITER |
+CREATE TRIGGER insert_booking 
+AFTER INSERT ON booking
+FOR EACH ROW
+BEGIN
+    UPDATE customer SET current_booking = NEW.booking_id 
+    WHERE customer_id = NEW.customer_id;
+    UPDATE driver SET current_booking = NEW.booking_id 
+    WHERE driver_id = NEW.driver_id;
 END |
 DELIMITER ;
 

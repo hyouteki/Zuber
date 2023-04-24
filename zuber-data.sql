@@ -3,6 +3,9 @@
 
 USE zuber;
 
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS; 
+SET FOREIGN_KEY_CHECKS=0; 
+
 -- Dumping data for table `customer`
 
 SET AUTOCOMMIT=0;
@@ -106,7 +109,7 @@ INSERT INTO customer VALUES
 (97, 'Christopher Chen', '%*$M$^nCd2', NULL, '(373)894-2875'),
 (98, 'Gerald Bridges', 'i1MmStJ&)V', NULL, '(378)027-6270'),
 (99, 'Robert Martin', 'MVDb#B8t^0', NULL, '5511510239'),
-(100, 'Deborah Wells', 'P*k3VuFtx9', NULL, '683.810.3281');
+(100, 'Deborah Wells', 'P*k3VuFtx9', 100, '683.810.3281');
 COMMIT;
 
 -- Dumping data for table `car`
@@ -318,7 +321,7 @@ INSERT INTO driver VALUES
 (97, 'Brittany Rogers', 'Y90aBmJb@U', NULL, '+1-945-207-1686x2259', 97, '373 Wong Junctions Apt. 720 Kenttown, MH 51254', TRUE),
 (98, 'Joseph Meyer', 'd28IdgFC*+', NULL, '125-063-7129x416', 98, '625 Hudson Fort Suite 908 Smithhaven, UT 49786', TRUE),
 (99, 'Jason Pope', '_nW9NRy!5&', NULL, '+1-930-334-2786', 99, '571 Parsons Via Suite 922 West Brendaside, CA 75942', TRUE),
-(100, 'Kathy Fields', ')8vtpsEbZ8', NULL, '+1-675-126-6492x1309', 100, '639 Wallace Mews South Monica, PR 25284', TRUE);
+(100, 'Kathy Fields', ')8vtpsEbZ8', 100, '+1-675-126-6492x1309', 100, '639 Wallace Mews South Monica, PR 25284', TRUE);
 COMMIT;
 
 -- Dumping data for table `transaction`
@@ -530,5 +533,7 @@ INSERT INTO booking VALUES
 (97, '01499 Kristen Summit Suite 937 Johnsonfurt, RI 40200', '3127 Matthew Streets South Madelinefort, CA 86591', 5, '2003-04-19 08:12:23', 'Completed', 46, FALSE, 97, 97, 97),
 (98, '822 Daniel Pines Youngville, DC 12975', '872 Raymond Orchard Port Dianefort, LA 98654', 4, '2004-06-22 14:12:12', 'Canceled', NULL, TRUE, 98, 98, 98),
 (99, '574 Jamie Cove Apt. 112 South Jerryport, MA 91212', '723 Kimberly Orchard Suite 137 North Jamesfurt, GA 64713', 1, '2006-12-12 16:23:23', 'Completed', 47, FALSE, 99, 99, 99),
-(100, '755 Harris Heights Angelahaven, RI 20153', '11678 Nicholas Circles North Victor, ID 07846', 6, '2001-01-19 11:12:23', 'Completed', 48, TRUE, 100, 100, 100);
+(100, '755 Harris Heights Angelahaven, RI 20153', '11678 Nicholas Circles North Victor, ID 07846', 6, '2001-01-19 11:12:23', 'Ongoing', 48, TRUE, 100, 100, 100);
 COMMIT;
+
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

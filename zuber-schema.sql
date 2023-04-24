@@ -43,7 +43,7 @@ CREATE TABLE driver (
     current_booking SMALLINT UNSIGNED,
     phone_number VARCHAR(35) NOT NULL,
     car_id SMALLINT UNSIGNED NOT NULL,
-    current_location VARCHAR(255) NOT NULL,
+    current_location VARCHAR(255),
     working BOOLEAN NOT NULL,
     PRIMARY KEY (driver_id),
     UNIQUE KEY (phone_number),

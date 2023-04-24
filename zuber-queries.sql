@@ -3,8 +3,6 @@
 
 USE zuber;
 
-
-
 -- customer related queries
 
 CREATE VIEW customer_booking_history AS
