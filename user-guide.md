@@ -17,7 +17,6 @@
 ## Driver
 ### Sign up
 ### Sign in
-***Work in progress***
 - Check details (which includes)
 	- Id
 	- Name
@@ -36,3 +35,11 @@
 - Select all cars
 - Select all bookings (trips)
 - Select all transactions
+# Functional requirements
+- [x] Customer actions
+- [ ] Driver actions
+- [x] Administrative actions
+- [x] Booking system
+- [x] Dummy payment system
+- [ ] User interaction
+- [x] Secure handling
